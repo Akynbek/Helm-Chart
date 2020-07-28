@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+  labels:
+    app: {{ .Chart.Name }}-{{ .Chart.Version }}
+spec:
+  containers:
+  - image: {{ .Values.nginx_image.repository }}:{{ .Values.nginx_image.tag }}
+    name: nginx
+  resources:
+      limits:
+        cpu: {{ .Values.service.spec.cpu }}
+        memory: {{ .Values.service.spec.memory }}
